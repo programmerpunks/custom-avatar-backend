@@ -1,8 +1,8 @@
-const express = require('express')
-const cors = require('cors')
 const axios = require('axios')
 const cloudinary = require('cloudinary').v2
+const cors = require('cors')
 require('dotenv').config()
+const express = require('express')
 
 var app = express()
 app.use(express.json())
@@ -16,7 +16,16 @@ cloudinary.config({
 })
 
 app.get('/', function (req, res) {
-  cloudinary.api.resources({type: 'upload', prefix: `Avatar-Assets/${req.query.part}/`, max_results: 100}, (error, result) => {res.send(error?error:result.resources)} )
+  cloudinary.api.resources(
+    {
+      type: 'upload',
+      prefix: `Avatar-Assets/${req.query.part}/`,
+      max_results: 100,
+    },
+    (error, result) => {
+      res.send(error ? error : result.resources)
+    },
+  )
 })
 
 app.listen(5000, function () {
