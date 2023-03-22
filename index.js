@@ -15,7 +15,7 @@ cloudinary.config({
   secure: true,
 })
 
-app.get('/', function (req, res) {
+app.get('/', (req, res) => {
   cloudinary.api.resources(
     {
       type: 'upload',
@@ -28,6 +28,6 @@ app.get('/', function (req, res) {
   )
 })
 
-app.listen(5000, function () {
+app.listen(5000, () => {
   console.log('Example app listening on port 5000!')
 })
